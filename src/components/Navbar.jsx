@@ -15,9 +15,9 @@ const Navbar = () => {
 //   };
 
   return (
-  <div className="bg-white py-3">
-      <nav className="flex items-center justify-between max-w-7xl mx-auto">
-      <ul className="flex gap-3">
+  <div className="bg-white py-4">
+      <nav className="flex items-center justify-between max-w-7xl mx-8">
+      <ul className="flex gap-4">
         <li>
           <Link href={"/"}>Home</Link>
         </li>
@@ -37,7 +37,7 @@ const Navbar = () => {
       </ul>
 
       <div>
-        <h2 className="font-bold text-4xl text-emerald-500">MediQueue</h2>
+        <h2 className="font-bold text-4xl text-emerald-500 mr-40">MediQueue</h2>
       </div>
 
       <ul className="flex items-center gap-3">
