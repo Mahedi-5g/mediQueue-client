@@ -6,16 +6,16 @@ const Banner = () => {
         <div className=''>
             <div className="carousel w-full">
                 <div
-                    className="relative w-full h-56 md:h-96 lg:h-100 bg-cover bg-center bg-no-repeat text-white bg-[url('/assets/banner1.jpg')] ">
+                    className="relative w-full h-56 md:h-96 lg:h-105 bg-cover bg-center bg-no-repeat text-white bg-[url('/assets/banner1.jpg')] ">
                     <div className="absolute inset-0 bg-black/45"></div>
 
                     <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-5 gap-5">
 
-                        <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold leading-tight">
+                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
                             Book Expert Tutors For Better Learning
                         </h1>
 
-                        <p className="text-sm md:text-xl lg:text-2xl max-w-3xl text-slate-300">
+                        <p className="text-sm md:text-lg lg:text-xl max-w-3xl text-slate-300">
                             Connect with qualified tutors, schedule sessions easily, and enhance
                             your learning journey with MediQueues smart booking platform.
                         </p>
