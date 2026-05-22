@@ -1,15 +1,15 @@
-"use client"
+'use client'
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-const AvailableTutors = () => {
-
+const TutorsPage = () => {
     const [tutors, setTutors] = useState([]);
 
     useEffect(() => {
 
         const fetchTutors = async () => {
-            const res = await fetch("http://localhost:5000/tutors");
+            const res = await fetch("http://localhost:5000/all-tutors");
             const data = await res.json();
             setTutors(data);
         }
@@ -17,8 +17,8 @@ const AvailableTutors = () => {
     }, []);
 
     return (
-        <div className='mx-16 my-10'>
-            <h3 className='text-center text-3xl font-semibold'>Available Tutors</h3>
+        <div className='mx-16 mt-8'>
+            <h1 className='text-4xl font-semibold text-slate-600'>ALL Tutors</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10'>
                 {
                     tutors.map(tutor => (
@@ -38,7 +38,11 @@ const AvailableTutors = () => {
                                 <p className='text-gray-700'>Session Start:{tutor.sessionStartDate}</p>
                                 <p className='text-gray-700'>Fee:{tutor.hourlyFee}</p>
                                 <div className="text-center pt-1">
-                                    <button className=" bg-cyan-600 hover:bg-cyan-700 transition w-1/2 py-2 rounded-xl text-white cursor-pointer">Book Session</button>
+                                    <Link href={`/tutors/${tutor._id}`}>
+                                        <button className="bg-cyan-600 hover:bg-cyan-700 transition w-1/2 py-2 rounded-xl text-white cursor-pointer">
+                                            View Details
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -46,8 +50,10 @@ const AvailableTutors = () => {
                 }
 
             </div>
+
+
         </div>
     );
 };
 
-export default AvailableTutors;
+export default TutorsPage;
