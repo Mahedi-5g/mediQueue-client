@@ -8,9 +8,9 @@ import React from 'react';
 
 const AddTutorsPage = () => {
 
-        const router = useRouter();
+    const router = useRouter();
 
-    const { data: session} = authClient.useSession();
+    const { data: session } = authClient.useSession();
     if (!session) {
         router.push("/login");
         return null;
@@ -52,7 +52,7 @@ const AddTutorsPage = () => {
             alert("Tutor Added Successfully");
             form.reset();
         }
-        
+
     };
 
     return (
