@@ -149,8 +149,6 @@ export function ModalPage({ tutor, session }) {
         const bookingData = {
             tutorId: tutor._id,
             tutorName: tutor.tutorName,
-            tutorImage:tutor.photo,
-
             studentName: session?.user?.name,
             studentEmail: session?.user?.email,
             phone,
