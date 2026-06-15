@@ -1,7 +1,7 @@
+import DeleteFormData from '@/components/DeleteFormData';
 import { UpdateFormModal } from '@/components/UpdateForm';
 import { auth } from '@/lib/auth';
-import {TrashBin } from '@gravity-ui/icons';
-import { Button, Table } from '@heroui/react';
+import {Table } from '@heroui/react';
 import { headers } from 'next/headers';
 
 
@@ -56,9 +56,7 @@ const MyTutorsPage = async () => {
                                 <Table.Cell>{tutor.totalSlot}</Table.Cell>
                                 <Table.Cell>{tutor.sessionStartDate}</Table.Cell>
                                 <Table.Cell><div >
-                                    <Button isIconOnly variant="danger">
-                                        <TrashBin />
-                                    </Button>
+                                    <DeleteFormData tutor={tutor}></DeleteFormData>
                                     <UpdateFormModal tutor={tutor}></UpdateFormModal>
                                     
                                 </div></Table.Cell>
