@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const Banner = () => {
@@ -20,9 +21,9 @@ const Banner = () => {
                             your learning journey with MediQueues smart booking platform.
                         </p>
 
-                        <button className=" bg-cyan-600 hover:bg-cyan-700 transition px-6 py-3 rounded-lg cursor-pointer">
+                        <Link href={"/tutors"}><button className=" bg-cyan-600 hover:bg-cyan-700 transition px-6 py-3 rounded-lg cursor-pointer">
                             Tutors Page
-                        </button>
+                        </button></Link>
                     </div>
 
                     {/* Slider Buttons */}

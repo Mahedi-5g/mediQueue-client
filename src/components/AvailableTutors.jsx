@@ -1,5 +1,7 @@
 "use client"
+import { Button } from '@heroui/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const AvailableTutors = () => {
@@ -38,7 +40,11 @@ const AvailableTutors = () => {
                                 <p className='text-gray-700'>Session Start:{tutor.sessionStartDate}</p>
                                 <p className='text-gray-700'>Fee:{tutor.hourlyFee}</p>
                                 <div className="text-center pt-1">
-                                    <button className=" bg-cyan-600 hover:bg-cyan-700 transition w-1/2 py-2 rounded-xl text-white cursor-pointer">Book Session</button>
+                                    <Link href={`/tutors/${tutor._id}`}>
+                                        <button className="bg-cyan-600 hover:bg-cyan-700 transition w-1/2 py-2 rounded-xl text-white cursor-pointer">
+                                            View Details
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -46,6 +52,13 @@ const AvailableTutors = () => {
                 }
 
             </div>
+
+            <div className="flex justify-center"><Link href={"/tutors"}>
+                <Button className="bg-taupe-400 hover:bg-taupe-600 transition px-4 py-2 rounded-xl text-white">
+                    See All
+                </Button></Link>
+            </div>
+
         </div>
     );
 };

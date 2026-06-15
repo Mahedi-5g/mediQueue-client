@@ -2,11 +2,18 @@
 
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
-import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const Navbar = () => {
+  const pathname = usePathname();
+
+  const navLinkClass = (path) =>
+    pathname === path
+      ? "bg-cyan-600 text-white px-3 py-2 rounded-2xl hover:bg-cyan-700"
+      : "px-3 py-2";
+
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
@@ -25,20 +32,20 @@ const Navbar = () => {
 
         <ul className="flex gap-4">
           <li>
-            <Link href={"/"}>Home</Link>
+            <Link href={"/"}  className={navLinkClass("/")}>Home</Link>
           </li>
           <li>
-            <Link href={"/tutors"}>Tutors</Link>
+            <Link href={"/tutors"}  className={navLinkClass("/tutors")}>Tutors</Link>
           </li>
           <li>
-            <Link href={"/add-tutors"}>Add Tutors</Link>
+            <Link href={"/add-tutors"}  className={navLinkClass("/add-tutors")}>Add Tutors</Link>
           </li>
 
           <li>
-            <Link href={"/my-tutors"}>My Tutors</Link>
+            <Link href={"/my-tutors"}  className={navLinkClass("/my-tutors")}>My Tutors</Link>
           </li>
           <li>
-            <Link href={"/my-booked-session"}>My Booked Session</Link>
+            <Link href={"/my-booked-session"}  className={navLinkClass("/my-booked-session")}>My Booked Session</Link>
           </li>
         </ul>
 

@@ -1,20 +1,38 @@
 'use client'
+import LoadingAnimation from '@/components/LoadingAnimation';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const TutorsPage = () => {
     const [tutors, setTutors] = useState([]);
-
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
-
         const fetchTutors = async () => {
-            const res = await fetch("http://localhost:5000/all-tutors");
-            const data = await res.json();
-            setTutors(data);
-        }
+            try {
+                setLoading(true);
+                const res = await fetch("http://localhost:5000/all-tutors");
+                const data = await res.json();
+                setTutors(data);
+
+            } catch (error) {
+                console.error("Error fetching animals:", error);
+            } finally {
+                setLoading(false);
+            }
+
+        };
+
         fetchTutors();
     }, []);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <LoadingAnimation />
+            </div>
+        );
+    }
 
     return (
         <div className='mx-16 mt-8'>
