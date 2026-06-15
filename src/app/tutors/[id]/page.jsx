@@ -122,6 +122,8 @@
 
 "use client";
 
+import Error from "@/app/error";
+import LoadingAnimation from "@/components/LoadingAnimation";
 import { ModalPage } from "@/components/Modal";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
@@ -169,17 +171,15 @@ const TutorDetailsPage = () => {
 
     if (loading) {
         return (
-            <div className="text-center py-10">
-                Loading Tutor Details...
+            <div className="text-center py-10 mx-auto">
+               <LoadingAnimation></LoadingAnimation>
             </div>
         );
     }
 
     if (!tutor) {
         return (
-            <div className="text-center py-10">
-                Tutor Not Found
-            </div>
+            <Error></Error>
         );
     }
 
