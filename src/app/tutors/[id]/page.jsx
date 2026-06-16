@@ -4,36 +4,43 @@
 import Error from "@/app/error";
 import LoadingAnimation from "@/components/LoadingAnimation";
 import { ModalPage } from "@/components/Modal";
+
 import { authClient } from "@/lib/auth-client";
+
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const TutorDetailsPage = () => {
     const params = useParams();
-    const router = useRouter();
+
 
     const [tutor, setTutor] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const { data: session } = authClient.useSession();
 
-    useEffect(() => {
-        if (session === null) {
-            router.push("/login");
-        }
-    }, [session, router]);
+
 
     useEffect(() => {
         const fetchTutor = async () => {
+
+            const { data:tokenData } = await authClient.token();
+            console.log(tokenData.token);
+
             try {
-                const res = await fetch(
-                    `http://localhost:5000/tutors/${params.id}`
-                );
+                if (tokenData.token) {
+                    const res = await fetch(
+                        `http://localhost:5000/tutors/${params.id}`, {
+                        headers: {
+                            authorization: `Bearer ${tokenData?.token}`
+                        }
+                    });
 
-                const data = await res.json();
+                    const data = await res.json();
 
-                setTutor(data);
+                    setTutor(data);
+                }
             } catch (error) {
                 console.log(error);
             } finally {
@@ -49,7 +56,7 @@ const TutorDetailsPage = () => {
     if (loading) {
         return (
             <div className="text-center py-10 mx-auto">
-               <LoadingAnimation></LoadingAnimation>
+                <LoadingAnimation></LoadingAnimation>
             </div>
         );
     }
