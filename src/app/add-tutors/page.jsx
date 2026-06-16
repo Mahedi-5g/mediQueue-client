@@ -11,10 +11,6 @@ const AddTutorsPage = () => {
         const router = useRouter();
 
     const { data: session} = authClient.useSession();
-    if (!session) {
-        router.push("/login");
-        return null;
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();

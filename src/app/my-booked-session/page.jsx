@@ -1,9 +1,10 @@
 
 import { CancelAlert } from '@/components/CancelAlert';
+import NoDataPage from '@/components/NoData';
 import { auth } from '@/lib/auth';
-import { Chip, Table } from '@heroui/react';
+import { Button, Chip, Table } from '@heroui/react';
 import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import React from 'react';
 
 const BookingPage = async () => {
@@ -16,15 +17,13 @@ const BookingPage = async () => {
 
     const bookings = await res.json();
 
-    if (!session) {
-        redirect("/login");
-    }
-
     if (bookings.length === 0) {
         return (
-            <div className="text-center py-20">
+            <div className="text-center py-8">
+                <NoDataPage></NoDataPage>
                 <h2>No Bookings Found</h2>
                 <p>You have not booked any sessions yet.</p>
+                <Link href="/" rel="noopener noreferrer" className="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50"><Button className="bg-gray-400">Back to homepage</Button> </Link>
             </div>
         );
     }

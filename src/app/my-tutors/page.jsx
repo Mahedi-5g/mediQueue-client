@@ -1,17 +1,16 @@
 import DeleteFormData from '@/components/DeleteFormData';
+import NoDataPage from '@/components/NoData';
 import { UpdateFormModal } from '@/components/UpdateForm';
 import { auth } from '@/lib/auth';
-import {Table } from '@heroui/react';
+import { Button, Table } from '@heroui/react';
 import { headers } from 'next/headers';
+import Link from 'next/link';
 
 
 const MyTutorsPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
-    if (!session) {
-        redirect("/login");
-    }
 
     const res = await fetch(
         `http://localhost:5000/my-tutors/${session.user.email}`,
@@ -21,13 +20,15 @@ const MyTutorsPage = async () => {
 
     if (tutors.length === 0) {
         return (
-            <div className="text-center py-20">
+            <div className="text-center py-8">
+                <NoDataPage></NoDataPage>
                 <h2 className="text-2xl font-bold">
                     No Tutors Found
                 </h2>
                 <p>
                     You have not added any tutors yet.
                 </p>
+                <Link href="/" rel="noopener noreferrer" className="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50"><Button className="bg-gray-400">Back to homepage</Button> </Link>
             </div>
         );
     }
@@ -58,7 +59,7 @@ const MyTutorsPage = async () => {
                                 <Table.Cell><div >
                                     <DeleteFormData tutor={tutor}></DeleteFormData>
                                     <UpdateFormModal tutor={tutor}></UpdateFormModal>
-                                    
+
                                 </div></Table.Cell>
                             </Table.Row>
                         ))}
