@@ -12,8 +12,16 @@ const MyTutorsPage = async () => {
         headers: await headers(),
     });
 
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+
     const res = await fetch(
-        `http://localhost:5000/my-tutors/${session.user.email}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/my-tutors/${session.user.email}`, {
+        headers: {
+            authrization: `Bearer${token}`
+        }
+    }
     );
 
     const tutors = await res.json();

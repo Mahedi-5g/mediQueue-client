@@ -1,19 +1,24 @@
 "use client";
 
+import { authClient } from '@/lib/auth-client';
 import { TrashBin } from '@gravity-ui/icons';
 import { AlertDialog, Button } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const DeleteFormData = ({tutor}) => {
+const DeleteFormData = ({ tutor }) => {
     const router = useRouter();
 
     const handleDelete = async (id) => {
+        const { data: tokenData } = await authClient.token();
         const res = await fetch(
-            `http://localhost:5000/tutors/${id}`,
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${id}`,
             {
                 method: "DELETE",
+                headers: {
+                    authorization: `Bearer${tokenData?.token}`
+                }
             }
         );
 

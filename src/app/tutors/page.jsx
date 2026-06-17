@@ -11,7 +11,7 @@ const TutorsPage = () => {
         const fetchTutors = async () => {
             try {
                 setLoading(true);
-                const res = await fetch("http://localhost:5000/all-tutors");
+                const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-tutors`);
                 const data = await res.json();
                 setTutors(data);
 

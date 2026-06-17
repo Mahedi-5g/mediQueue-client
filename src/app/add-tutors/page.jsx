@@ -16,6 +16,7 @@ const AddTutorsPage = () => {
         e.preventDefault();
 
         const form = e.target;
+        const {data:tokenData}=await authClient.token();
 
         const tutorData = {
             tutorName: form.tutorName.value,
@@ -34,10 +35,11 @@ const AddTutorsPage = () => {
             userName: session?.user?.name,
         };
 
-        const res = await fetch("http://localhost:5000/tutors", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
+                authorization:`Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(tutorData),
         });

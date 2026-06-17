@@ -8,7 +8,7 @@ export function CancelAlert({ bookingId }) {
 
     const router = useRouter();
     const handleCancelBooking = async () => {
-        const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
