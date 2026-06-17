@@ -19,7 +19,7 @@ const MyTutorsPage = async () => {
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/my-tutors/${session.user.email}`, {
         headers: {
-            authrization: `Bearer${token}`
+            authorization:`Bearer ${token}`
         }
     }
     );
