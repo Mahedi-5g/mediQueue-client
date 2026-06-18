@@ -19,7 +19,7 @@ const AvailableTutors = () => {
     }, []);
 
     return (
-        <div className='mx-16 my-10'>
+        <div className='mx-8 md:12 lg:mx-16 my-10'>
             <h3 className='text-center text-3xl font-semibold'>Available Tutors</h3>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10'>
                 {

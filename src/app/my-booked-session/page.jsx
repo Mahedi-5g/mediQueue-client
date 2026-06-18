@@ -36,36 +36,53 @@ const BookingPage = async () => {
     }
 
     return (
-        <div className='mx-16 mt-8'>
+        <div className='mx-4 md:12 lg:mx-16 mt-8'>
             <h1 className="text-3xl font-bold text-taupe-500 pb-5">See your Booked Session</h1>
-            <Table variant="secondary">
+            <div className="overflow-x-auto">
+                <Table
+                    variant="secondary"
+                    aria-label="Booked sessions"
+                    className="min-w-[800px]"
+                >
+                    <Table.Content>
+                        <Table.Header>
+                            <Table.Column isRowHeader>Student Name</Table.Column>
+                            <Table.Column>Phone</Table.Column>
+                            <Table.Column>Tutor Name</Table.Column>
+                            <Table.Column>Email</Table.Column>
+                            <Table.Column>Status</Table.Column>
+                            <Table.Column>Cancel</Table.Column>
+                        </Table.Header>
 
-                <Table.Content aria-label="Team members">
-                    <Table.Header>
-                        <Table.Column isRowHeader>StudentName</Table.Column>
-                        <Table.Column>Phone</Table.Column>
-                        <Table.Column>TutorName</Table.Column>
-                        <Table.Column>Email</Table.Column>
-                        <Table.Column>Status</Table.Column>
-                        <Table.Column>Cancel</Table.Column>
-                    </Table.Header>
-                    <Table.Body>
-                        {bookings.map((booking) => (
-                            <Table.Row key={booking._id}>
-                                <Table.Cell>{booking.studentName}</Table.Cell>
-                                <Table.Cell>{booking.phone}</Table.Cell>
-                                <Table.Cell>{booking.tutorName}</Table.Cell>
-                                <Table.Cell>{booking.studentEmail}</Table.Cell>
-                                <Table.Cell> <Chip
-                                    color={booking.status === "Cancelled" ? "danger" : "success"} >
-                                    {booking.status || "Confirm"}
-                                </Chip></Table.Cell>
-                                <Table.Cell><CancelAlert bookingId={booking._id}></CancelAlert> </Table.Cell>
-                            </Table.Row>
-                        ))}
-                    </Table.Body>
-                </Table.Content>
-            </Table>
+                        <Table.Body>
+                            {bookings.map((booking) => (
+                                <Table.Row key={booking._id}>
+                                    <Table.Cell>{booking.studentName}</Table.Cell>
+                                    <Table.Cell>{booking.phone}</Table.Cell>
+                                    <Table.Cell>{booking.tutorName}</Table.Cell>
+                                    <Table.Cell>{booking.studentEmail}</Table.Cell>
+
+                                    <Table.Cell>
+                                        <Chip
+                                            color={
+                                                booking.status === "Cancelled"
+                                                    ? "danger"
+                                                    : "success"
+                                            }
+                                        >
+                                            {booking.status || "Confirm"}
+                                        </Chip>
+                                    </Table.Cell>
+
+                                    <Table.Cell>
+                                        <CancelAlert bookingId={booking._id} />
+                                    </Table.Cell>
+                                </Table.Row>
+                            ))}
+                        </Table.Body>
+                    </Table.Content>
+                </Table>
+            </div>
 
         </div>
     );

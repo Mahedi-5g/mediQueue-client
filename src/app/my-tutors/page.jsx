@@ -41,7 +41,7 @@ const MyTutorsPage = async () => {
         );
     }
     return (
-        <div className='mx-16 mt-8'>
+        <div className='mx-8 md:12 lg:mx-16 mt-8'>
             <h1 className="text-3xl font-bold text-taupe-500 pb-5">See your Tutors here</h1>
             <Table variant="secondary">
 

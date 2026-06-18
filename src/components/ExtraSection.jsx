@@ -2,7 +2,7 @@ import React from 'react';
 
 const ExtraSection = () => {
     return (
-        <div className='mx-16'>
+        <div className='mx-8 md:12 lg:mx-16'>
             <div className=''>
                 <h1 className='text-center font-semibold text-3xl'>Why Choose Us?</h1>
                 <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10 text-center'>

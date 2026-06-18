@@ -67,7 +67,7 @@ const TutorDetailsPage = () => {
     }
 
     return (
-        <div className="mx-16 my-10">
+        <div className="mx-8 md:12 lg:mx-16 my-10">
             <h1 className="text-4xl font-semibold text-slate-600">
                 Tutor Details Here...
             </h1>
