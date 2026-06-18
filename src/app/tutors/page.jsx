@@ -46,7 +46,7 @@ const TutorsPage = () => {
     return (
         <div className='mx-8 md:12 lg:mx-16 mt-8'>
             <h1 className='text-4xl font-semibold text-slate-600 mb-6'>ALL Tutors</h1>
-            <div className='flex justify-between'>
+            <div className='md:flex lg:flex justify-between'>
                 <SearchBar search={search}
                     setSearch={setSearch}>
                 </SearchBar>
