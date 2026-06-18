@@ -1,2 +1,6 @@
 @import "tailwindcss";
 @import "@heroui/styles"; 
+
+html.dark {
+  color-scheme: dark;
+}
