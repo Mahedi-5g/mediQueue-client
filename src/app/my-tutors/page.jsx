@@ -19,7 +19,7 @@ const MyTutorsPage = async () => {
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/my-tutors/${session.user.email}`, {
         headers: {
-            authorization:`Bearer ${token}`
+            authorization: `Bearer ${token}`
         }
     }
     );
@@ -41,40 +41,69 @@ const MyTutorsPage = async () => {
         );
     }
     return (
-        <div className='mx-8 md:12 lg:mx-16 mt-8'>
+        <div className='mx-4 md:12 lg:mx-16 mt-8'>
             <h1 className="text-3xl font-bold text-taupe-500 pb-5">See your Tutors here</h1>
-            <Table variant="secondary">
+        
+            <div className="md:hidden lg:hidden space-y-4">
+                {tutors.map((tutor) => (
+                    <div
+                        key={tutor._id}
+                        className="border rounded-lg p-4 shadow-sm"
+                    >
+                        <h2 className="font-bold text-lg">
+                            {tutor.tutorName}
+                        </h2>
 
-                <Table.Content aria-label="Team members">
-                    <Table.Header>
-                        <Table.Column isRowHeader>TutorName</Table.Column>
-                        <Table.Column>Subject</Table.Column>
-                        <Table.Column>Available</Table.Column>
-                        <Table.Column>Hourly Fee</Table.Column>
-                        <Table.Column>Total Slot</Table.Column>
-                        <Table.Column>Registration Date</Table.Column>
-                        <Table.Column>Action</Table.Column>
-                    </Table.Header>
-                    <Table.Body>
-                        {tutors.map((tutor) => (
-                            <Table.Row key={tutor._id}>
-                                <Table.Cell>{tutor.tutorName}</Table.Cell>
-                                <Table.Cell>{tutor.subject}</Table.Cell>
-                                <Table.Cell>{tutor.availableDaysTime}</Table.Cell>
-                                <Table.Cell>{tutor.hourlyFee}</Table.Cell>
-                                <Table.Cell>{tutor.totalSlot}</Table.Cell>
-                                <Table.Cell>{tutor.sessionStartDate}</Table.Cell>
-                                <Table.Cell><div >
-                                    <DeleteFormData tutor={tutor}></DeleteFormData>
-                                    <UpdateFormModal tutor={tutor}></UpdateFormModal>
+                        <p><span className="font-medium">Subject:</span> {tutor.subject}</p>
+                        <p><span className="font-medium">Available:</span> {tutor.availableDaysTime}</p>
+                        <p><span className="font-medium">Hourly Fee:</span> ${tutor.hourlyFee}</p>
+                        <p><span className="font-medium">Total Slot:</span> {tutor.totalSlot}</p>
+                        <p><span className="font-medium">Registration:</span> {tutor.sessionStartDate}</p>
 
-                                </div></Table.Cell>
-                            </Table.Row>
-                        ))}
+                        <div className="flex gap-2 mt-3">
+                            <DeleteFormData tutor={tutor} />
+                            <UpdateFormModal tutor={tutor} />
+                        </div>
+                    </div>
+                ))}
+            </div>
 
-                    </Table.Body>
-                </Table.Content>
-            </Table>
+            {/* Desktop View */}
+            <div className="hidden md:block lg:block overflow-x-auto">
+                <Table variant="secondary" aria-label="Tutor Table">
+                    <Table.Content>
+                        <Table.Header>
+                            <Table.Column isRowHeader>Tutor Name</Table.Column>
+                            <Table.Column>Subject</Table.Column>
+                            <Table.Column>Available</Table.Column>
+                            <Table.Column>Hourly Fee</Table.Column>
+                            <Table.Column>Total Slot</Table.Column>
+                            <Table.Column>Registration Date</Table.Column>
+                            <Table.Column>Action</Table.Column>
+                        </Table.Header>
+
+                        <Table.Body>
+                            {tutors.map((tutor) => (
+                                <Table.Row key={tutor._id}>
+                                    <Table.Cell>{tutor.tutorName}</Table.Cell>
+                                    <Table.Cell>{tutor.subject}</Table.Cell>
+                                    <Table.Cell>{tutor.availableDaysTime}</Table.Cell>
+                                    <Table.Cell>${tutor.hourlyFee}</Table.Cell>
+                                    <Table.Cell>{tutor.totalSlot}</Table.Cell>
+                                    <Table.Cell>{tutor.sessionStartDate}</Table.Cell>
+
+                                    <Table.Cell>
+                                        <div className="flex gap-2">
+                                            <DeleteFormData tutor={tutor} />
+                                            <UpdateFormModal tutor={tutor} />
+                                        </div>
+                                    </Table.Cell>
+                                </Table.Row>
+                            ))}
+                        </Table.Body>
+                    </Table.Content>
+                </Table>
+            </div>
 
         </div>
     );

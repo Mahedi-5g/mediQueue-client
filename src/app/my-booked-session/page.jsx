@@ -38,11 +38,37 @@ const BookingPage = async () => {
     return (
         <div className='mx-4 md:12 lg:mx-16 mt-8'>
             <h1 className="text-3xl font-bold text-taupe-500 pb-5">See your Booked Session</h1>
-            <div className="overflow-x-auto">
+            <div className="block md:hidden lg:hidden">
+                {bookings.map((booking) => (
+                    <div
+                        key={booking._id}
+                        className="border rounded-lg p-4 mb-4 shadow"
+                    >
+                        <p><strong>Student:</strong> {booking.studentName}</p>
+                        <p><strong>Phone:</strong> {booking.phone}</p>
+                        <p><strong>Tutor:</strong> {booking.tutorName}</p>
+                        <p><strong>Email:</strong> {booking.studentEmail}</p>
+
+                        <Chip
+                            color={
+                                booking.status === "Cancelled"
+                                    ? "danger"
+                                    : "success"
+                            }
+                            className="my-2"
+                        >
+                            {booking.status || "Confirm"}
+                        </Chip>
+
+                        <CancelAlert bookingId={booking._id} />
+                    </div>
+                ))}
+            </div>
+
+            <div className="hidden md:block lg:block overflow-x-auto">
                 <Table
                     variant="secondary"
                     aria-label="Booked sessions"
-                    className="min-w-[800px]"
                 >
                     <Table.Content>
                         <Table.Header>
