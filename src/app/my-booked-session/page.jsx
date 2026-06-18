@@ -18,7 +18,7 @@ const BookingPage = async () => {
     const user = session?.user
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${user?.email}`, {
         headers: {
-            authrization: `Bearer${token}`
+            authorization: `Bearer ${token}`
         }
     });
 

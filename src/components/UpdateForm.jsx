@@ -34,7 +34,7 @@ export function UpdateFormModal({ tutor }) {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",
-                    authorization: `Bearer${tokenData?.token}`
+                    authorization: `Bearer ${tokenData?.token}`
                 },
                 body: JSON.stringify(updatedTutor),
             }

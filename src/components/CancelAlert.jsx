@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -8,10 +9,12 @@ export function CancelAlert({ bookingId }) {
 
     const router = useRouter();
     const handleCancelBooking = async () => {
+        const { data: tokenData } = await authClient.token();
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`, {
             method: "PATCH",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                 authorization:`Bearer ${tokenData?.token}`
             }
         })
 

@@ -17,7 +17,7 @@ const DeleteFormData = ({ tutor }) => {
             {
                 method: "DELETE",
                 headers: {
-                    authorization: `Bearer${tokenData?.token}`
+                    authorization:`Bearer ${tokenData?.token}`
                 }
             }
         );

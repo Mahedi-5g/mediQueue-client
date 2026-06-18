@@ -1,70 +1,108 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const Banner = () => {
     return (
-        <div className=''>
-            <div className="carousel w-full">
-                <div
-                    className="relative w-full h-56 md:h-96 lg:h-105 bg-cover bg-center bg-no-repeat text-white bg-[url('/assets/banner1.jpg')] ">
-                    <div className="absolute inset-0 bg-black/45"></div>
+        <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+            }}
+            loop={true}
+            className="w-full"
+        >
+            {/* Slide 1 */}
+            <SwiperSlide>
+                <div className="relative h-[500px]">
+                    <Image
+                        src="/assets/banner1.jpg"
+                        alt="Banner 1"
+                        fill
+                        className="object-cover"
+                    />
 
-                    <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-5 gap-5">
+                    <div className="absolute inset-0 bg-black/50" />
 
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+                    <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-5 text-white">
+                        <h1 className="text-4xl font-bold">
                             Book Expert Tutors For Better Learning
                         </h1>
 
-                        <p className="text-sm md:text-lg lg:text-xl max-w-3xl text-slate-300">
-                            Connect with qualified tutors, schedule sessions easily, and enhance
-                            your learning journey with MediQueues smart booking platform.
+                        <p className="max-w-3xl mt-4 text-lg">
+                            Connect with qualified tutors, schedule sessions easily,
+                            and enhance your learning journey.
                         </p>
 
-                        <Link href={"/tutors"}><button className=" bg-cyan-600 hover:bg-cyan-700 transition px-6 py-3 rounded-lg cursor-pointer">
-                            Tutors Page
-                        </button></Link>
-                    </div>
-
-                    {/* Slider Buttons */}
-                    <div className="absolute left-5 right-5 top-1/2 z-20 flex -translate-y-1/2 justify-between">
-
-                        <button className="bg-white/30 hover:bg-white/50 text-white w-12 h-12 rounded-full">
-                            ❮
-                        </button>
-
-                        <button className="bg-white/30 hover:bg-white/50 text-white w-12 h-12 rounded-full">
-                            ❯
-                        </button>
-
+                        <Link href="/tutors">
+                            <button className="mt-6 bg-cyan-600 hover:bg-cyan-700 px-6 py-3 rounded-lg">
+                                Tutors Page
+                            </button>
+                        </Link>
                     </div>
                 </div>
-            </div>
-            {/* <div id="slide2" className="carousel-item relative w-full">
+            </SwiperSlide>
+
+            {/* Slide 2 */}
+            <SwiperSlide>
+                <div className="relative h-[500px]">
                     <Image
                         src="/assets/banner2.jpg"
-                        alt='bannar2'
-                        width={600}
-                        height={400}
-                        className="w-full h-100" />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide1" className="btn btn-circle">❮</a>
-                        <a href="#slide3" className="btn btn-circle">❯</a>
+                        alt="Banner 2"
+                        fill
+                        className="object-cover"
+                    />
+
+                    <div className="absolute inset-0 bg-black/50" />
+
+                    <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
+                        <h1 className="text-4xl font-bold">
+                            Learn From Experienced Tutors
+                        </h1>
+
+                        <p className="mt-4 text-lg">
+                            Find the best tutor for your academic success.
+                        </p>
                     </div>
                 </div>
-                <div id="slide3" className="carousel-item relative w-full">
+            </SwiperSlide>
+
+            {/* Slide 3 */}
+            <SwiperSlide>
+                <div className="relative h-[500px]">
                     <Image
                         src="/assets/banner3.jpg"
-                        alt='bannar3'
-                        width={600}
-                        height={400}
-                        className="w-full h-100" />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide2" className="btn btn-circle">❮</a>
-                        <a href="#slide1" className="btn btn-circle">❯</a>
+                        alt="Banner 3"
+                        fill
+                        className="object-cover"
+                    />
+
+                    <div className="absolute inset-0 bg-black/50" />
+
+                    <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
+                        <h1 className="text-4xl font-bold">
+                            Flexible Online & Offline Sessions
+                        </h1>
+
+                        <p className="mt-4 text-lg">
+                            Schedule classes according to your convenience.
+                        </p>
                     </div>
-                </div> */}
-        </div>
+                </div>
+            </SwiperSlide>
+        </Swiper>
     );
 };
 
